@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+<title>Socket Example</title>
+</head>
+<body>
+<img id ="img" src="" />
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+var socket = io.connect('http://localhost:3000');
+var imgchunks =[];
+socket.on('img-chunk', (chunk) =>{
+var img = document.getElementById('img');
+imgchunks.push(chunk);
+img.setAttribute('src','data:image/jpg;base64,' + window.btoa(imgchunks));
+})
+</script>
+</body>
+</html>
